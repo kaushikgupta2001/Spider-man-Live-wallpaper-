@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000428;
+    font-family: 'Inter', sans-serif;
+    user-select: none;
+    cursor: crosshair; /* Spidey aiming cursor */
+}
+
+#sky-layer, #skyline-layer, #rain-layer, #particles-layer, #spider-layer, #ui-layer, #effects-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let mouse events pass through */
+}
+
+/* Enable pointer events on body and UI elements */
+body {
+    pointer-events: auto;
+}
+
+#ui-layer {
+    pointer-events: auto;
+}
+
+#clock-container {
+    pointer-events: auto;
+}
+
+/* Base sky background */
+#sky-layer {
+    background: radial-gradient(circle at center bottom, #b30000 0%, #000428 100%);
+    transition: background 2s ease;
+    z-index: 1;
+}
+
+#skyline-layer {
+    z-index: 2;
+}
+
+#rain-layer {
+    z-index: 3;
+}
+
+#particles-layer {
+    z-index: 4;
+}
+
+#spider-layer {
+    z-index: 5;
+}
+
+#ui-layer {
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#effects-layer {
+    z-index: 7;
+}
+
+/* Utility classes */
+.hidden {
+    display: none !important;
+}
+
+#slideshow-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Replace sky layer's dominance */
+    pointer-events: none;
+}
+
+.slideshow-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slideshow-image.active {
+    opacity: 1;
+    animation: kenBurns 20s infinite alternate linear;
+}
+
+.slideshow-image.fade-out {
+    opacity: 0;
+}
+
+@keyframes kenBurns {
+    0% { transform: scale(1.0); }
+    100% { transform: scale(1.1); }
+}
+
+/* Glitch effects for transitions */
+@keyframes glitch1 {
+    0% { clip-path: inset(10% 0 80% 0); transform: translate(-5px, 5px); filter: hue-rotate(90deg); }
+    20% { clip-path: inset(80% 0 10% 0); transform: translate(5px, -5px); filter: hue-rotate(-90deg); }
+    40% { clip-path: inset(40% 0 40% 0); transform: translate(-5px, -5px); filter: invert(1); }
+    60% { clip-path: inset(20% 0 60% 0); transform: translate(5px, 5px); }
+    80% { clip-path: inset(60% 0 20% 0); transform: translate(-5px, -5px); filter: sepia(1); }
+    100% { clip-path: inset(0 0 0 0); transform: translate(0, 0); filter: none; }
+}
+
+@keyframes glitch2 {
+    0% { filter: contrast(2) brightness(2) drop-shadow(5px 0 red) drop-shadow(-5px 0 cyan); }
+    20% { transform: skewX(10deg); filter: invert(0.5); }
+    40% { transform: skewX(-10deg); filter: blur(2px); }
+    60% { transform: skewX(5deg) scaleY(1.1); }
+    80% { transform: skewX(-5deg) scaleY(0.9); }
+    100% { transform: skewX(0) scaleY(1); filter: none; }
+}
+
+.slideshow-image.active.glitch-1 {
+    animation: glitch1 0.5s ease-out forwards, kenBurns 20s 0.5s infinite alternate linear;
+}
+
+.slideshow-image.active.glitch-2 {
+    animation: glitch2 0.3s ease-out forwards, kenBurns 20s 0.3s infinite alternate linear;
+}
+
+.skyline-back, .skyline-mid, .skyline-front {
+    mix-blend-mode: multiply;
+    opacity: 0.3;
+}
+
+.vline {
+    position:fixed;
+    top: 0;
+    left: 50%;
+    height: 50vh;
+    width: 2px;
+    background-color: #FFF;
+    z-index: 10;
+    opacity: 0.5;
+    visibility: hidden;
+}
+.gsapWrapper {
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#wBody {
+    position: relative;
+    aspect-ratio: 1/1;
+}
+@media (orientation: landscape) { #wBody { width: 65vh; } }
+@media (orientation: portrait) { #wBody { height: 65vw; } }
+#watch {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    overflow: visible;
+}
+#watchSVG {
+    overflow: visible;
+    width: 100%;
+    height: 100%;
+}

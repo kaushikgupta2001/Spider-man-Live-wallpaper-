@@ -1,0 +1,61 @@
+{
+  "title": "Spider-Verse Clock",
+  "type": "web",
+  "file": "index.html",
+  "description": "Spider-Man themed clock with parallax skyline, rain, and interactive web shooting.",
+  "contentrating": "Everyone",
+  "general": {
+    "properties": {
+      "clockcolor": {
+        "text": "Clock Color",
+        "type": "color",
+        "value": "1 1 1"
+      },
+      "glowintensity": {
+        "text": "Glow Intensity",
+        "type": "slider",
+        "min": 0,
+        "max": 100,
+        "value": 50
+      },
+      "rainamount": {
+        "text": "Rain Amount",
+        "type": "slider",
+        "min": 0,
+        "max": 100,
+        "value": 50
+      },
+      "animationspeed": {
+        "text": "Animation Speed",
+        "type": "slider",
+        "min": 50,
+        "max": 150,
+        "value": 100
+      },
+      "showseconds": {
+        "text": "Show Seconds",
+        "type": "bool",
+        "value": true
+      },
+      "use24hour": {
+        "text": "24 Hour Clock",
+        "type": "bool",
+        "value": false
+      },
+      "slideshowspeed": {
+        "text": "Slideshow Speed (s)",
+        "type": "slider",
+        "min": 5,
+        "max": 120,
+        "value": 30
+      },
+      "musicvolume": {
+        "text": "Music Volume",
+        "type": "slider",
+        "min": 0,
+        "max": 100,
+        "value": 0
+      }
+    }
+  }
+}
