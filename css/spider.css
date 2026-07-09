@@ -1,0 +1,75 @@
+#spider-container {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform-origin: top center;
+    width: 150px;
+    height: 150px;
+}
+
+#spider-sprite {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#web-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 5px white;
+    transform-origin: top center;
+}
+
+/* Interactive shooting web */
+.shot-web {
+    position: absolute;
+    height: 2px;
+    background: white;
+    box-shadow: 0 0 5px white;
+    transform-origin: left center;
+    z-index: 6;
+}
+
+#parallax-spiders-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.parallax-spider-wrapper {
+    position: absolute;
+    transform-origin: top center;
+    will-change: transform;
+}
+
+.parallax-spider-web {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%);
+}
+
+.parallax-spider-sprite {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url('../assets/spider.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Red glowing eyes effect using drop-shadow on the SVG */
+    filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
+    will-change: transform;
+}

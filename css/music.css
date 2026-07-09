@@ -1,0 +1,210 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Spider-Man Music UI
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Now-playing strip (bottom centre) ──────────────────────────── */
+#now-playing-strip {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(5, 0, 0, 0.82);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(200, 20, 20, 0.45);
+    border-radius: 40px;
+    padding: 10px 20px 10px 14px;
+    box-shadow: 0 4px 30px rgba(200, 0, 0, 0.35), 0 0 0 1px rgba(255,255,255,0.05);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.5s ease;
+    pointer-events: none;
+    min-width: 260px;
+    max-width: 420px;
+}
+
+#now-playing-strip.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.np-spider-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.np-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    overflow: hidden;
+}
+
+.np-label {
+    font-family: 'Bangers', 'Inter', sans-serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: rgba(200, 20, 20, 0.9);
+    text-transform: uppercase;
+}
+
+.np-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+}
+
+/* ── Music Controls ──────────────────────────────────────────────── */
+.np-controls {
+    display: flex;
+    gap: 8px;
+    margin: 0 8px;
+    pointer-events: auto;
+}
+
+.np-controls button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.1s;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.np-controls button:hover {
+    color: #fff;
+    transform: scale(1.15);
+}
+
+.np-controls button:active {
+    transform: scale(0.95);
+}
+
+/* ── Equalizer bars ──────────────────────────────────────────────── */
+.np-eq {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.np-eq span {
+    width: 3px;
+    border-radius: 2px;
+    background: #c00;
+    height: 4px;
+    transition: height 0.1s;
+}
+
+/* Animate EQ bars when playing */
+.np-eq.playing span:nth-child(1) { animation: eq 0.7s ease-in-out infinite alternate;        }
+.np-eq.playing span:nth-child(2) { animation: eq 0.5s ease-in-out infinite alternate 0.1s;   }
+.np-eq.playing span:nth-child(3) { animation: eq 0.9s ease-in-out infinite alternate 0.2s;   }
+.np-eq.playing span:nth-child(4) { animation: eq 0.6s ease-in-out infinite alternate 0.05s;  }
+.np-eq.playing span:nth-child(5) { animation: eq 0.8s ease-in-out infinite alternate 0.15s;  }
+
+@keyframes eq {
+    0%   { height: 3px;  background: #c00; }
+    50%  { height: 14px; background: #ff4444; }
+    100% { height: 6px;  background: #ff2020; }
+}
+
+/* ── Spider music button (bottom-right) ─────────────────────────── */
+#spider-music-btn-wrapper {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+}
+
+#spider-music-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid rgba(220, 20, 20, 0.6);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#spider-music-ring.active {
+    opacity: 1;
+    animation: ringPulse 0.85s ease-out infinite;
+}
+
+@keyframes ringPulse {
+    0%   { transform: scale(1);    opacity: 0.9; }
+    100% { transform: scale(2.2);  opacity: 0;   }
+}
+
+#spider-music-btn {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background: radial-gradient(circle at 35% 35%, #ff3a3a, #8b0000);
+    box-shadow: 0 4px 20px rgba(200,0,0,0.7), 0 0 0 3px rgba(255,255,255,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s;
+    pointer-events: auto;
+}
+
+#spider-music-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0 8px 32px rgba(200,0,0,0.9), 0 0 0 3px rgba(255,255,255,0.25);
+}
+
+#spider-music-btn.dancing {
+    animation: btnDance 0.45s ease-in-out infinite alternate;
+}
+
+@keyframes btnDance {
+    0%   { transform: scale(1)    rotate(-7deg); }
+    100% { transform: scale(1.15) rotate(7deg);  }
+}
+
+.music-spider-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.music-spider-icon svg { width: 40px; height: 40px; filter: drop-shadow(0 0 4px rgba(255,255,255,0.5)); }
+.music-label { font-family: 'Bangers','Inter',sans-serif; font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.9); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DANCE MODE — whole-page atmosphere
+   ═══════════════════════════════════════════════════════════════════ */
+body.dance-mode #slideshow-layer {
+    animation: danceFlicker 0.5s steps(2) infinite;
+}
+
+@keyframes danceFlicker {
+    0%   { filter: saturate(1.8) brightness(1.1) hue-rotate(0deg);   }
+    50%  { filter: saturate(2.3) brightness(1.2) hue-rotate(12deg);  }
+    100% { filter: saturate(1.6) brightness(1.0) hue-rotate(-8deg);  }
+}
+
+body.dance-mode #web-line {
+    animation: webBounce 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes webBounce {
+    from { transform: scaleX(1)    rotate(0deg); }
+    to   { transform: scaleX(1.05) rotate(6deg); }
+}

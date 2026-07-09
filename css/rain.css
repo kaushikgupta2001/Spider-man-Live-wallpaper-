@@ -1,0 +1,13 @@
+#rain-layer canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Spider-Verse style halftones / bloom for particles */
+#particles-layer canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    mix-blend-mode: screen;
+}

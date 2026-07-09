@@ -1,0 +1,58 @@
+/* Parallax Skyline Layers */
+.skyline-back, .skyline-mid, .skyline-front {
+    position: absolute;
+    bottom: 0;
+    width: 200%; /* Wider for parallax scrolling */
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    will-change: transform;
+}
+
+.skyline-back {
+    height: 60%;
+    opacity: 0.4;
+    filter: blur(2px);
+    z-index: 1;
+}
+
+.skyline-mid {
+    height: 45%;
+    opacity: 0.7;
+    filter: blur(1px);
+    z-index: 2;
+}
+
+.skyline-front {
+    height: 30%;
+    opacity: 1;
+    z-index: 3;
+}
+
+.fog-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 4, 40, 0.8), transparent);
+    z-index: 4;
+}
+
+#clouds-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    opacity: 0.5;
+}
+
+#lightning-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    z-index: 10;
+    pointer-events: none;
+}

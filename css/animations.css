@@ -1,0 +1,31 @@
+/* Keyframes */
+@keyframes lightningFlash {
+    0% { opacity: 0; }
+    10% { opacity: 0.8; }
+    20% { opacity: 0; }
+    30% { opacity: 0.5; }
+    40% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes cloudMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50vw); }
+}
+
+@keyframes thwip {
+    0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 0; }
+}
+
+.comic-text {
+    position: absolute;
+    font-family: 'Bangers', cursive;
+    color: yellow;
+    font-size: 3rem;
+    text-shadow: 3px 3px 0 red, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    pointer-events: none;
+    animation: thwip 0.5s forwards;
+    z-index: 10;
+}
